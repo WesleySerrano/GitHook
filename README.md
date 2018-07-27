@@ -22,7 +22,7 @@
         IdentitiesOnly  yes
     ```
 
-#No servidor de deploy
+# No servidor de deploy
 - Clonar o repositório no servidor de deploy com a flag `--bare`
 - No repositório recém clonado, na pasta `hooks`, criar um arquivo chamado **post-receive**
 - Dar permissão de execução
