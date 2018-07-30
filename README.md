@@ -1,4 +1,10 @@
-# On remote repo
+# Tutorial and scripts for creating Git hooks
+
+Gists:
+- [Script for deploy server](https://gist.github.com/WesleySerrano/cddb01e387d34269884bfde312a42a7a)
+- [Script for repository server](https://gist.github.com/WesleySerrano/afc11e0b9d78fdd7df3fe79a5a64551c)
+
+## On remote repo
 - In the git repository directory, in the folder `hooks`, create a file named **post-receive**
 - Grant execution (`chmod +x post-receive`)
 - Add the following snippet:
@@ -22,7 +28,7 @@
         IdentitiesOnly  yes
     ```
 
-# No servidor de deploy
+## On deploy server
 - Clone the repo with the flag `bare`
 - In the just clonned repository, in the folder `hooks`, create a file named **post-receive**
 - Grant execution
@@ -34,7 +40,7 @@
     #like 'npm install' or 'npm run build'
     ```
 
-# Useful commands:
+## Useful commands:
 - Some times, commands should be executed with **sudo** permission, to bypass this run the following:
   ```bash
   echo <user that will make the pull> ALL= NOPASSWD: <path to command executable> [flags or params if needed] | sudo tee --append /etc/sudoers > /dev/null
