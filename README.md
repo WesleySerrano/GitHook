@@ -1,35 +1,35 @@
-# No repositório remoto
-- Na pasta do repositório, na pasta `hooks`, criar um arquivo chamado **post-receive**
-- Dar permissão de execução (`chmod +x post-receive`)
-- Inserir o seguinte trecho:
+# On remote repo
+- In the git repository directory, in the folder `hooks`, create a file named **post-receive**
+- Grant execution (`chmod +x post-receive`)
+- Add the following snippet:
     ```bash
     #!/bin/sh
-    git push -f ssh://<usuário no servidor>@<IP do servidor>:<porta de acesso><Caminho no servidor para o repositório bare> <branch de origem>:<branch de destino>
+    git push -f ssh://<deploy server user>@<deploy server IP>:<access port><Path to the bare repo in the deploy server> <origin branch>:<destiny branch>
     ```
-- Alternativamente (recomendada):
+- Alternatively (recommended):
     ```bash
     #!/bin/sh
-    git push -f ssh://<usuário no servidor>@<alias do servidor><Caminho no servidor para o repositório bare> <branch de origem>:<branch de destino>
+    git push -f ssh://<deploy server user>@<deploy server alias><Path to the bare repo in the deploy server> <origin branch>:<destiny branch>
     ```
-- Caso a segunda opção seja utilizada, aa seguinte configuração deverá ser adicionada às configurações do SSH
-  (essas configurações geralmente se encontram na no arquivo **config** na pasta **.ssh** na home do usuário:
+- In case you use the second option, the following snippet should be added to yours SSH configurations
+  (these configurations are usually found in the **config** file in the **.ssh** folder at user's home:
     ```bash
-    Host <alias do servidor>
-        Hostname        <IP do servidor>
-        Port            <A porta a ser utilizada na conexão>
-        User            <usuário no servidor>
-        IdendityFile    <Caminho para o arquivo contendo a chave privada>
+    Host <deploy server alias>
+        Hostname        <server IP>
+        Port            <port to be used>
+        User            <server user>
+        IdendityFile    <Path to private key>
         IdentitiesOnly  yes
     ```
 
 # No servidor de deploy
-- Clonar o repositório no servidor de deploy com a flag `--bare`
-- No repositório recém clonado, na pasta `hooks`, criar um arquivo chamado **post-receive**
-- Dar permissão de execução
-- Inserir o seguinte trecho:
+- Clone the repo with the flag `bare`
+- In the just clonned repository, in the folder `hooks`, create a file named **post-receive**
+- Grant execution
+- Add the following snippet:
     ```bash
     #!/bin/sh
-    GIT_WORK_TREE=<Caminho para o diretório contendo o código> git checkout -f <branch de destino>
-    #Insira quaisquer outros comandos que devam ser executados após o git pull
-    #como 'npm install' e/ou 'npm run build'
+    GIT_WORK_TREE=<Path to the folder with the code> git checkout -f <destiny branch>
+    #Add any other commands that should be executed after git pull
+    #like 'npm install' or 'npm run build'
     ```
