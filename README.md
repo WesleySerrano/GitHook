@@ -33,3 +33,9 @@
     #Add any other commands that should be executed after git pull
     #like 'npm install' or 'npm run build'
     ```
+
+#Useful commands:
+- Some times, commands should be executed with **sudo** permission, to bypass this run the following:
+  ```bash
+  echo <user that will make the pull> ALL= NOPASSWD: <path to command executable> [flags or params if needed] | sudo tee --append /etc/sudoers > /dev/null
+  ```
